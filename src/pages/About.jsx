@@ -7,7 +7,7 @@ export default function About() {
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => 
     e.preventDefault();
     setSubmitted(true);
   };
