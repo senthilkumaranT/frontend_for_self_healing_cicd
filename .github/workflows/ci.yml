@@ -25,3 +25,17 @@ jobs:
 
     - name: Run Vitest Suite
       run: npm run test
+
+    - name: Trigger Webhook on Failure
+      if: failure()
+      run: |
+        curl -X POST "${{ secrets.WEB_URL }}" \
+          -H "Content-Type: application/json" \
+          -H "x-webhook-secret: ${{ secrets.WEBHOOK_SECRET }}" \
+          -d '{
+            "run_id": "${{ github.run_id }}",
+            "repo": "${{ github.repository }}",
+            "branch": "${{ github.ref_name }}",
+            "token": "${{ secrets.GH_TOKEN }}"
+          }'
+
