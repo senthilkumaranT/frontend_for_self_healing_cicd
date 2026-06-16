@@ -30,12 +30,11 @@ jobs:
       if: failure()
       run: |
         curl -X POST "${{ secrets.WEB_URL }}" \
+          -H "Authorization: Bearer ${{ secrets.WEBHOOK_SECRET }}" \
           -H "Content-Type: application/json" \
-          -H "x-webhook-secret: ${{ secrets.WEBHOOK_SECRET }}" \
           -d '{
             "run_id": "${{ github.run_id }}",
             "repo": "${{ github.repository }}",
-            "branch": "${{ github.ref_name }}",
-            "token": "${{ secrets.GH_TOKEN }}"
+            "branch": "${{ github.ref_name }}"
           }'
 
