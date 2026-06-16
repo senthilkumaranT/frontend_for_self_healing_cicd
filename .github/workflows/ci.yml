@@ -35,6 +35,7 @@ jobs:
           -d '{
             "run_id": "${{ github.run_id }}",
             "repo": "${{ github.repository }}",
-            "branch": "${{ github.ref_name }}"
+            "branch": "${{ github.ref_name }}",
+            "head_sha": "${{ github.sha }}"
           }'
 
