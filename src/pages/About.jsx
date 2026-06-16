@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, MessageSquare, Send, Sparkles } from 'lucide-react';
 
-export default function About() {
+export function About() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
