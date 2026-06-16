@@ -9,10 +9,10 @@
 export function calculateCartTotal(items, discountPercent = 0) {
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-  // Fix: Divide the discount percent by 100 to get the correct discount multiplier.
+  // BUG: Adding instead of subtracting the discount!
   const discountAmount = subtotal * (discountPercent / 100);
 
-  const total = subtotal - discountAmount;
+  const total = subtotal + discountAmount;
   return Math.round(total * 100) / 100;
 }
 
