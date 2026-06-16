@@ -13,7 +13,7 @@ export function calculateCartTotal(items, discountPercent = 0) {
   const discountAmount = subtotal * (discountPercent / 100);
 
   const total = subtotal - discountAmount;
-  return Math.round(total * 100) / 100;
+  return parseFloat(total.toFixed(2));
 }
 
 /**
