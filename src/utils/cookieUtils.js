@@ -9,10 +9,12 @@
 export function calculateCartTotal(items, discountPercent = 0) {
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-  // BUG: Adding instead of subtracting the discount!
-  const discountAmount = subtotal * (discountPercent / 100);
+  // BUG: Direct multiplication without dividing the percent by 100.
+  // This causes a 10% discount to multiply the subtotal by 10 instead of 0.1,
+  // making the final cart total a massive negative value.
+  const discountAmount = subtotal * discountPercent;
 
-  const total = subtotal + discountAmount;
+  const total = subtotal - discountAmount;
   return Math.round(total * 100) / 100;
 }
 
