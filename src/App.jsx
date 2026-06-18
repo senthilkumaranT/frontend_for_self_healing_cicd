@@ -69,10 +69,12 @@ export default function App() {
       prevCart.map(item => {
         if (item.id === id) {
           const newQty = item.quantity + delta;
-          return newQty > 0 ? { ...item, quantity: newQty } : null;
+          // Fix: Ensure quantity is non-negative, but keep item in cart even if quantity is 0
+          return { ...item, quantity: Math.max(0, newQty) };
         }
         return item;
-      }).filter(Boolean)
+      })
+      // No .filter(Boolean) here anymore, to keep items with quantity 0
     );
   };
 
