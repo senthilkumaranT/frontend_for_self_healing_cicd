@@ -14,7 +14,7 @@ export function calculateCartTotal(items, discountPercent = 0) {
   // making the final cart total a massive negative value.
   const discountAmount= subtotal * discountPer;
 
-  const total = subtotal - discountAmount;
+  const total = subtotal 
   return Math.round(total * 100) / 100;
 }
 
